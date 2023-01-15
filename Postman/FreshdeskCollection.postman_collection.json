@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "2e7990c6-da36-45f9-9911-be454cc59cdc",
+		"name": "FreshdeskCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TestGetAllContacts",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8010/api/v1/fresh/contacts",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"v1",
+						"fresh",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAllContacts",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8010/api/v1/fresh/contacts",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"v1",
+						"fresh",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "testGetCountriesFromCRM",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8010/api/v1/crm/test/country/ZAF",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"v1",
+						"crm",
+						"test",
+						"country",
+						"ZAF"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,36 @@
+Customer create request via SQS.
+
+message listener class method.
+new ObjectMapper().writeValueAsString(freshDeskPayload)
+=> {"fresh-message-type":"CUSTOMER_CREATION","date-created":1603643892210,"message-payload":"{\"id\":16,\"name\":\"Andre\",\"surname\":\"Krappie\",\"cell-number\":\"1234567890\",\"id-number\":\"223344556677\",\"email\":\"andre@vodamail.com\",\"customer-status\":\"PENDING_VALIDATION\"}","message-uuid":"923bcdeb-e990-4ff5-8f25-0a057ab93c27"}
+
+RestTemplateHandler
+Method -> POST
+freshdeskRequestPayload =>
+new ObjectMapper().writeValueAsString(freshdeskRequestPayload)
+=> {"email":"andre@vodamail.com","mobile":"1234567890","name":"Andre Krappie","phone":"1234567890","unique_external_id":"16","custom_fields":{"country_of_residence":"South Africa1"}}
+
+Success response    =>
+new ObjectMapper().writeValueAsString(response)
+{"headers":{"Date":["Sun, 25 Oct 2020 16:42:11 GMT"],"Content-Type":["application/json; charset=utf-8"],"Transfer-Encoding":["chunked"],"Connection":["keep-alive"],"Status":["201 Created"],"Pragma":["no-cache"],"X-Request-Id":["dfbb20d9-2486-9b51-8a36-b25b333c8a73"],"Location":["https://kappaj.freshdesk.com/api/v2/contacts/79013254993"],"X-Freshdesk-Api-Version":["latest=v2; requested=v2"],"X-Rack-Cache":["invalidate, pass"],"Cache-Control":["no-cache, no-store, max-age=0, must-revalidate"],"X-Xss-Protection":["1; mode=block"],"X-Ua-Compatible":["IE=Edge,chrome=1"],"X-Content-Type-Options":["nosniff"],"Expires":["Wed, 13 Oct 2010 00:00:00 UTC"],"Set-Cookie":["_x_w=5_1; path=/; HttpOnly; secure","_x_m=x_c; path=/; HttpOnly; secure"],"X-Fw-Ratelimiting-Managed":["true"],"X-Ratelimit-Total":["400"],"X-Ratelimit-Remaining":["399"],"X-Ratelimit-Used-Currentrequest":["1"],"X-Envoy-Upstream-Service-Time":["116"],"X-Trace-Id":["00-53421dbd2dd69bd2f8d5ac1d2314266c-2ffcb28a6614455d-01"],"Server":["fwe"]},"body":"{\"active\":false,\"address\":null,\"company_id\":null,\"view_all_tickets\":null,\"deleted\":false,\"description\":null,\"email\":\"andre@vodamail.com\",\"id\":79013254993,\"job_title\":null,\"language\":\"en\",\"mobile\":\"1234567890\",\"name\":\"Andre Krappie\",\"phone\":\"1234567890\",\"time_zone\":\"Harare\",\"twitter_id\":null,\"custom_fields\":{\"agent_type\":null,\"super_agent\":null,\"mega_agent\":null,\"agent_nationality\":null,\"agent_id_creation_date\":null,\"agent_id\":null,\"country_of_residence\":\"South Africa1\",\"corridor\":null,\"customer_status\":null},\"tags\":[],\"other_emails\":[],\"facebook_id\":null,\"created_at\":\"2020-10-25T16:42:11Z\",\"updated_at\":\"2020-10-25T16:42:11Z\",\"csat_rating\":null,\"preferred_source\":null,\"other_companies\":[],\"unique_external_id\":\"16\",\"avatar\":null,\"twitter_profile_status\":false,\"twitter_followers_count\":null}","statusCode":"CREATED","statusCodeValue":201}
+
+
+=========== Switch over to update. NOTE: The external_uniqueue_id must still be the same.!!!!. Postman create generates a new id every time.    =======
+Customer create request via SQS - contact already exists in Freshdesk.
+message listener class method
+new ObjectMapper().writeValueAsString()
+=> {"fresh-message-type":"CUSTOMER_CREATION","date-created":1603644274055,"message-payload":"{\"id\":17,\"name\":\"Andre\",\"surname\":\"Krappie\",\"cell-number\":\"1234567890\",\"id-number\":\"223344556677\",\"email\":\"andre@vodamail.com\",\"customer-status\":\"PENDING_VALIDATION\"}","message-uuid":"2a7c1be9-5908-4e7b-934d-bdc469787051"}
+
+RestTemplateHandler
+Method => POST
+new ObjectMapper().writeValueAsString(freshdeskRequestPayload)
+{"email":"andre@vodamail.com","mobile":"1234567890","name":"Andre Krappie","phone":"1234567890","unique_external_id":"17","custom_fields":{"country_of_residence":"South Africa1"}}
+
+handler return error response due to duplicate email address
+new ObjectMapper().writeValueAsString(freshErrorResponse)
+=> {"description":"Validation failed","errors":[{"code":"duplicate_value","field":"email","additional_info":{"user_id":79013254993},"message":"It should be a unique value"}],"response-code":409}
+
+now do a get with the external ID
+RestTemplateHandler -
+method -> GET
+URI => /api/v2/contacts?unique_external_id=17

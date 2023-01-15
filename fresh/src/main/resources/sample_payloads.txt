@@ -1,0 +1,26 @@
+==  Sample customer create payload on queue ==
+{
+  "fresh-message-type": "CUSTOMER_CREATION",
+  "date-created": 1602007953474,
+  "message-payload": "{\"id\":7,\"name\":\"Andre\",\"surname\":\"Krappie\",\"cellNumber\":\"1234567890\",\"idNumber\":\"223344556677\",\"email\":\"andre@vodamail.com\",\"customerStatusEnum\":\"PENDING_VALIDATION\",\"dataModified\":null,\"dateCreated\":1602007953444}",
+  "message-uuid": "91dedc51-54ba-4224-a641-6c03fa104900"
+}
+
+Message string on queueListener
+{"fresh-message-type":"CUSTOMER_CREATION","date-created":1602011982499,"message-payload":"{\"id\":11,\"name\":\"Andre\",\"surname\":\"Krappie\",\"cell-number\":\"1234567890\",\"id-number\":\"223344556677\",\"email\":\"andre@vodamail.com\"}","message-uuid":"b1d78aa7-ebcd-4a93-b571-4bec017b3fd2"}
+
+MessageId on queueListener
+messageId   =>  295c80c7-f7c3-4705-bb22-615518e1f21a
+senderId    =>  AIDAYNJGLDSMKLDWHYRNJ
+
+
+== Response from Freshdesk upon success customer creation
+== Written with ObjectMapper from FreshdeskResponsePayload object
+
+{"responseCode":201,"responseMessage":"{\"active\":false,\"address\":null,\"company_id\":null,\"view_all_tickets\":null,\"deleted\":false,\"description\":null,\"email\":\"andre@vodamail.com\",\"id\":79013011181,\"job_title\":null,\"language\":\"en\",\"mobile\":\"1234567890\",\"name\":\"Andre Krappie\",\"phone\":\"1234567890\",\"time_zone\":\"Harare\",\"twitter_id\":null,\"custom_fields\":{\"agent_type\":null,\"super_agent\":null,\"mega_agent\":null,\"agent_nationality\":null,\"agent_id_creation_date\":null,\"agent_id\":null,\"country_of_residence\":\"South Africa1\",\"corridor\":null,\"customer_status\":null},\"tags\":[],\"other_emails\":[],\"facebook_id\":null,\"created_at\":\"2020-10-06T19:32:54Z\",\"updated_at\":\"2020-10-06T19:32:54Z\",\"csat_rating\":null,\"preferred_source\":null,\"other_companies\":[],\"unique_external_id\":\"10\",\"avatar\":null,\"twitter_profile_status\":false,\"twitter_followers_count\":null}"}
+
+== duplicate customer error on creation response
+== written with ObjectMapper from FreshdeskResponsePayload object
+== this will be an instance of FreshErrorResponse
+
+{"description":"Validation failed","errors":[{"code":"duplicate_value","field":"email","additional_info":{"user_id":79013011181},"message":"It should be a unique value"}],"response-code":409}

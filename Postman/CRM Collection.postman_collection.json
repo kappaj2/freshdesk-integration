@@ -1,0 +1,372 @@
+{
+	"info": {
+		"_postman_id": "f99513ce-71eb-4b42-ae2f-ce4973adbe40",
+		"name": "CRM Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CustomerRequests",
+			"item": [
+				{
+					"name": "createCustomer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Andre\",\n    \"surname\":\"Krappie\",\n    \"cell-number\":\"1234567890\",\n    \"id-number\":\"223344556677\",\n    \"email\":\"andre@vodamail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8020/api/v1/countries/zaf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"v1",
+								"countries",
+								"zaf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCustomer",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJraWQiOiIwUTZnaVUwVnFwcGF0cVk4OFNzU2wzazNMcmFCa1ZKQ012WTNJR1JTVG8wPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI2cjQ5MnE4ZnJvMDAxazVnanRjNXJvcThubCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiUk9MRVNcL0RFVkVMT1BFUiIsImF1dGhfdGltZSI6MTYwNDUwNTM2MywiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfTHBwQWM4cUlhIiwiZXhwIjoxNjA0NTA4OTYzLCJpYXQiOjE2MDQ1MDUzNjMsInZlcnNpb24iOjIsImp0aSI6ImNkYmQ5MmEwLTdhYjMtNDljNS05YTdkLWZlZDE4N2Y5ODY0ZiIsImNsaWVudF9pZCI6IjZyNDkycThmcm8wMDFrNWdqdGM1cm9xOG5sIn0.Gkgfj1t9FV5Yyus24yBJ3GO-I5JsJMIXH30UnH9-JkGY2SgLT0XIBRA217NpEqPpqlLzEbOr3ixYIBgOxPpywYrCUzyAnQBTvHC8RqU2LGhrE4Jhv_3qSrl8BvKEU2bqG_I4GqGcEocBUCunVHqHReYpomQFeNqyUunEVFgDV5_nnjGvwqMQElXpne987Zyk5ZGiKihhOS8P8j73P1BwHLB1XD76WhY9GaTG_bMjO9wvrBdZyngnwQh2ENJ3Xic_lflUfx9KwiT1VCjZFs4b3plhC9vRBVIvgN-N4YggLM8XXLil0AvHW4dj0vf7MZ0qVwsATPysHWh4FUmoZXIcYw",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Andre2\",\n    \"surname\":\"Krappie2\",\n    \"cell-number\":\"2712344332211\",\n    \"id-number\":\"223344333352256677\",\n    \"email\":\"andre2@vodamail.com\",\n    \"customer-status\":\"ACTIVE\",\n    \"country-code\":\"PAK\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://1v9dc4ckb4.execute-api.eu-west-1.amazonaws.com/dev/api/v1/customers/4",
+							"protocol": "https",
+							"host": [
+								"1v9dc4ckb4",
+								"execute-api",
+								"eu-west-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"v1",
+								"customers",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createNewCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Andre2\",\n    \"surname\":\"Krappie2\",\n    \"cell-number\":\"1234567890\",\n    \"id-number\":\"2233443333556677\",\n    \"email\":\"andre2@vodamail.com\",\n    \"customer-status\":\"ACTIVE\",\n    \"country-code\":\"ZAF\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8020/api/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createNewCustomerAPIGateway",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJraWQiOiIwUTZnaVUwVnFwcGF0cVk4OFNzU2wzazNMcmFCa1ZKQ012WTNJR1JTVG8wPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI2cjQ5MnE4ZnJvMDAxazVnanRjNXJvcThubCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiUk9MRVNcL0RFVkVMT1BFUiIsImF1dGhfdGltZSI6MTYwNDMzNDgwNywiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfTHBwQWM4cUlhIiwiZXhwIjoxNjA0MzM4NDA3LCJpYXQiOjE2MDQzMzQ4MDcsInZlcnNpb24iOjIsImp0aSI6IjUxNmI3YWNhLTUyYTQtNDBhMC1iNmM0LTI2YjdjYTRjZTNlMSIsImNsaWVudF9pZCI6IjZyNDkycThmcm8wMDFrNWdqdGM1cm9xOG5sIn0.JtMpe50E9LSOjpIvnJy1u0Ipjl6yobqsnXJkRdsi1PuKI7tCFrks7hk7trEPPgqFk73AgUC0fdD_1mKJsMHnwE0q9oZwgkyT1hf12tDcyKXjV-rwsM-y_DNF8HbfR-Qnla_lIURNM-DJ20H2V8876GLoUQhGMOc3YCQtdiyEVw3qz1KoGjiAZYEPemJK9KCeJy7yCyKPHMHWy37E9-eYrs4A8byfyQZUgvW1_shBAQZhnoj8jtttyV0KxRnLAtDpb_ZYrK3d0UBhkr1ZsfVaNrjmAyXt5VBlGeNTMac55cAiiWZKzizA4BoZJjJnWnDUc7BjpdUCKH12DXcUEhc61w",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Andre2\",\n    \"surname\":\"Krappie2\",\n    \"cell-number\":\"1234567890\",\n    \"id-number\":\"2233443333556677\",\n    \"email\":\"andre2@vodamail.com\",\n    \"customer-status\":\"ACTIVE\",\n    \"country-code\":\"PAK\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://1v9dc4ckb4.execute-api.eu-west-1.amazonaws.com/dev/api/v1/customers",
+							"protocol": "https",
+							"host": [
+								"1v9dc4ckb4",
+								"execute-api",
+								"eu-west-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8020/api/v1/customers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Country",
+			"item": [
+				{
+					"name": "getCountryByCode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCountries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8020/api/v1/countries",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"v1",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCountryByCodeViaAPIGateway",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJraWQiOiIwUTZnaVUwVnFwcGF0cVk4OFNzU2wzazNMcmFCa1ZKQ012WTNJR1JTVG8wPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI2cjQ5MnE4ZnJvMDAxazVnanRjNXJvcThubCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiUk9MRVNcL0RFVkVMT1BFUiIsImF1dGhfdGltZSI6MTYwNDMyOTg1NywiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfTHBwQWM4cUlhIiwiZXhwIjoxNjA0MzMzNDU3LCJpYXQiOjE2MDQzMjk4NTcsInZlcnNpb24iOjIsImp0aSI6IjA2ZGVkMzMxLWNkZTItNDBlNy05MGE4LWQ0ZmMwNzlkNTJmYyIsImNsaWVudF9pZCI6IjZyNDkycThmcm8wMDFrNWdqdGM1cm9xOG5sIn0.q33CeBFUSrUJP4TNsS4Qm_l8vGznKxtMkHsWnUYNnm2K7LjL4SdTC2Pk7XJgQ2Mxg3McTQ_q6zQ_08-lEr2zBbc3g7YnAN5kpJ_m0zVuubUitlffcxARZ7v_Hm-kpKGT4hcCxweHNsgJ3fKjuKYvqU2i59e8Wutyd55hRAttAcI_yKGTkRLM7xQHJMRtVdZG5Bc0gq4fvujKau0euvgmvS_dxPrVE2rHYQ78Gn4__Z2dt-vZE61ay02S9Tyml4HshTS2JgxnsA8Zuq-j-W_UWRG6El9MaOhQR0Lbio1HhxSDZ7rcyCa2t93woJYJ17_dkdUU2rV4WST51Pa3jvyvzQ",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1v9dc4ckb4.execute-api.eu-west-1.amazonaws.com/dev/api/v1/countries",
+							"protocol": "https",
+							"host": [
+								"1v9dc4ckb4",
+								"execute-api",
+								"eu-west-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"v1",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "AgentRequests",
+			"item": [
+				{
+					"name": "getAgentById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8020/api/v1/agents/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"v1",
+								"agents",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createNewAgent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"James\",\n    \"surname\":\"Bond\",\n    \"email-address\":\"JamesBond@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8020/api/v1/agents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"api",
+								"v1",
+								"agents"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GeStartupInformation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8020/actuator/startup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8020",
+					"path": [
+						"actuator",
+						"startup"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

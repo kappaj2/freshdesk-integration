@@ -1,0 +1,88 @@
+server:
+  port: 8010
+
+# Configure the log levels for logging.
+logging:
+  level:
+    ROOT: INFO
+    com.amazonaws: ERROR
+    org.springframework: ERROR
+    za.co.sfh.fresh: DEBUG
+    com.github.dockerjava: INFO
+    org.springframework.web.client.RestTemplate: INFO
+
+application:
+  restTemplateConfig:
+    readTimeout: 10000
+    connectTimeout: 10000
+    apiToken: z1Tqp8alYehcEeuTA1Dz
+    password: X
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+  # graceful shutdown parameters
+  server:
+    shutdown: graceful
+  lifecycle:
+    timeout-per-shutdown-phase=1m: 1m
+
+  datasource:
+    url: jdbc:mariadb://localhost:3306/fresh?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: admin
+
+  jpa:
+    database: mysql
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  flyway:
+    enabled: true
+    password: admin
+    user: root
+    schemas: fresh
+    url: jdbc:mariadb://localhost:3306/fresh?useUnicode=true&characterEncoding=utf8&useSSL=false
+
+  security:
+    oauth2:
+      client:
+        registration:
+          sfh-apigw:
+            client-id: 6r492q8fro001k5gjtc5roq8nl
+            client-secret: aqtv6l9barbjjv20btl41lm7jsqchfds6vjt14jqcudprc7uj0t
+            authorization-grant-type: client_credentials
+            scope: ROLES/DEVELOPER
+        provider:
+          sfh-apigw:
+            token-uri: https://dev-sfh-oauth.auth.eu-west-1.amazoncognito.com/oauth2/token
+
+freshdesk:
+  url: https://kappajomni.freshdesk.com
+  maintenance:
+    db:
+      days-to-keep: 30
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: eu-west-1
+      auto: false
+    end-point:
+      uri: https://sqs.eu-west-1.amazonaws.com/578290392216/crm-freshdesk-int
+    loader:
+      queue-capacity: 1
+    sqs:
+      max-retry-count: 10
+      max-delay-seconds: 900
+      delay-start-seconds: 10
+      retry-delay-increment: 20
+    apigateway:
+      backend-url: https://1v9dc4ckb4.execute-api.eu-west-1.amazonaws.com/dev

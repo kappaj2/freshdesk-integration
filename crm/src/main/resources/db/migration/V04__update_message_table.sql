@@ -1,0 +1,2 @@
+ALTER TABLE fresh_outgoing_messages
+    MODIFY COLUMN freshdesk_message_type enum ('CUSTOMER_CREATION','CUSTOMER_UPDATE','AGENT_CREATION','AGENT_UPDATE') DEFAULT NULL;

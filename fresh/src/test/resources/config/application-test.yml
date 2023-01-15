@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: test
+
+# Configure the log levels for logging.
+logging:
+  level:
+    ROOT: INFO
+    com.github: INFO
+    com.github.dockerjava.okhttp: INFO
+    org.springframework.test: INFO
+    za.co.sfh.fresh: DEBUG
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: eu-west-1
+      auto: false
+    end-point:
+      uri: https://sqs.eu-west-1.amazonaws.com/578290392216/crm-freshdesk-int
+    loader:
+      queue-capacity: 1
+    sqs:
+      max-retry-ount: 10
+      max-delay-seconds: 900
+      delay-start-seconds: 10
+      retry-delay-increment: 20
+
+

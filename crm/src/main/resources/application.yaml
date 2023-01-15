@@ -1,0 +1,80 @@
+server:
+  port: 8020
+
+# Configure the log levels for logging.
+logging:
+  level:
+    ROOT: INFO
+    com.amazonaws: ERROR
+    org.springframework: ERROR
+    za.co.sfh.crm: DEBUG
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+  # graceful shutdown parameters
+  server:
+    shutdown: graceful
+  lifecycle:
+    timeout-per-shutdown-phase=1m: 1m
+
+  #> create database crm;
+  #> create user 'crm'@'172.17.0.1' identified by 'helpmyasb';
+  #> GRANT ALL PRIVILEGES ON crm.* TO 'crm'@'172.17.0.1';
+
+spring:
+  datasource:
+    url: jdbc:mariadb://127.0.0.1:3306/crm?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: crm
+    password: helpmyasb
+
+  flyway:
+    enabled: true
+    password: helpmyasb
+    user: crm
+    schemas: crm
+    url: jdbc:mariadb://127.0.0.1:3306/crm?useUnicode=true&characterEncoding=utf8&useSSL=false
+
+  jpa:
+    database: mysql
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  flyway:
+    enabled: true
+    password: helpmyasb
+    user: crm
+    schemas: crm
+    url: jdbc:mariadb://127.0.0.1:3306/crm?useUnicode=true&characterEncoding=utf8&useSSL=false
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: eu-west-1
+      auto: false
+    end-point:
+      uri: https://sqs.eu-west-1.amazonaws.com/578290392216/crm-freshdesk-int
+    loader:
+      queue-capacity: 1
+    sqs:
+      max-retry-count: 10
+      max-delay-seconds: 900
+      delay-start-seconds: 10
+      retry-delay-increment: 20
+      queue-name: crm-freshdesk-int
+    apigateway:
+      backend-url: https://xxxxxx.execute-api.eu-west-1.amazonaws.com/dev
+
+# Expose actuator endpoints for management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: startup,info,health,httptrace

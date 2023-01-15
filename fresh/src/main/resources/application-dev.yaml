@@ -1,0 +1,12 @@
+security:
+  oauth2:
+    client:
+      registration:
+        sfh-apigw:
+          client-id: junk
+          client-secret: junk
+          authorization-grant-type: client_credentials
+          scope: openid, profile, backend
+      provider:
+        sfh-apigw:
+          token-uri: https://xxxx.auth.eu-west-1.amazoncognito.com/oauth2/token
